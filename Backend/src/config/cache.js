@@ -1,3 +1,4 @@
+require("dotenv").config();
 const Reddis = require("ioredis").default
 
 const reddis = new Reddis({
