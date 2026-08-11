@@ -1,26 +1,25 @@
 const userModel = require("../model/user.model")
 const jwt = require("jsonwebtoken")
 const blacklistModel = require("../model/blacklist.model")
-const reddis = require("../config/cache")
+const reddis = require("../config/cache.js")
 
 async function identifyUser(req,res,next){
     const token = req.cookies.token
     console.log(token)
-
-    const isTokenBlacklist = await blacklistModel.find({
-        token
-    })
-
-    if(isTokenBlacklist){
-        return res.status(400).json({
-            message:"unauthorised user"
-        })
-    }
-
-    if(!token){
+     if(!token){
         return res.status(401).json({
             message:"unauthorized token"
         })
+    }
+
+    const isTokenBlacklist = await reddis.get(token)
+
+    if(isTokenBlacklist){
+        return res.status(400).json({
+            message:"Invalid token"
+            
+        })
+
     }
 
     try {
