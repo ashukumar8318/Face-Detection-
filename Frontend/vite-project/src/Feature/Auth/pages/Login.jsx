@@ -2,21 +2,27 @@ import React from 'react'
 import "../style/login.scss"
 import { Link } from 'react-router-dom'
 const Login = () => {
+
+   function submitHandler(e) {
+      e.preventDefault();
+
+    }
   return (
- 
-  <div class="login-page">
+  <div className="login-page">
 
-    <div class="login-card">
+    <div className="login-card">
 
-      <div class="login-header">
+      <div className="login-header">
         <h1>Welcome Back</h1>
         <p>Login to your account</p>
       </div>
 
-      <form class="login-form">
+      <form onSubmit={(e)=>{
+        submitHandler(e)
+      }} className="login-form">
 
-        <div class="form-group">
-          <label for="username">Username</label>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
@@ -27,8 +33,8 @@ const Login = () => {
           />
         </div>
 
-        <div class="form-group">
-          <label for="password">Password</label>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -39,8 +45,8 @@ const Login = () => {
           />
         </div>
 
-        <div class="form-options">
-          <label class="remember">
+        <div className="form-options">
+          <label className="remember">
             <input type="checkbox" />
             <span>Remember me</span>
           </label>
@@ -48,13 +54,13 @@ const Login = () => {
           <a href="#">Forgot password?</a>
         </div>
 
-        <button type="submit" class="login-btn">
+        <button type="submit" className="login-btn">
           Login
         </button>
 
       </form>
 
-      <p class="signup-text">
+      <p className="signup-text">
         Don't have an account?
         <Link to="/Register">Sign up</Link>
         
