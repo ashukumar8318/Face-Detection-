@@ -5,6 +5,7 @@ const Login = () => {
 
    function submitHandler(e) {
       e.preventDefault();
+      console.log("LoggedIn")
 
     }
   return (
