@@ -1,9 +1,30 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "../style/register.scss"
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
- 
+
+  const navigate = useNavigate()
+
+  const{user,loading,handleRegister} = useAuth()
+
+  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+
+ async function submitHandler(e){
+  e.preventDefault()
+ console.log("userRegisterred")
+  await handleRegister({username,email,password})
+  prompt("User register succesffuly")
+  navigate("/login")
+
+
+ }
  
   return (
     <div className="register-page">
@@ -14,25 +35,12 @@ const Register = () => {
           <p>Register to get started</p>
         </div>
 
-        <form className="register-form">
+        <form onSubmit={submitHandler} className="register-form">
 
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email"
-              autoComplete="email"
-              required
-            />
-          </div>
-
-          <div className="form-group">
+           <div className="form-group">
             <label htmlFor="username">Username</label>
 
-            <input
+            <input value={username} onChange={(e)=>setUsername(e.target.value)}
               type="text"
               id="username"
               name="username"
@@ -43,9 +51,21 @@ const Register = () => {
           </div>
 
           <div className="form-group">
+            <label htmlFor="email">Email</label>
+
+            <input value={email} onChange={(e)=>setEmail(e.target.value)}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              autoComplete="email"
+              required
+            />
+          </div>
+          <div className="form-group">
             <label htmlFor="password">Password</label>
 
-            <input
+            <input value={password} onChange={(e)=>setPassword(e.target.value)}
               type="password"
               id="password"
               name="password"

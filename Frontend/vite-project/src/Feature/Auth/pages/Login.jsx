@@ -1,12 +1,23 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import "../style/login.scss"
 import { Link } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 const Login = () => {
 
-   function submitHandler(e) {
+  const{user,loading,handleLogin} = useAuth()
+   const navigate = useNavigate()
+
+  const [email, setemail] = useState("") 
+  const [username, setusername] = useState("")
+  const [password, setpassword] = useState("")
+ 
+
+   async function submitHandler(e) {
       e.preventDefault();
       console.log("LoggedIn")
-
+      await handleLogin({username,email,password})
+      navigate("/")
     }
   return (
   <div className="login-page">
@@ -18,30 +29,36 @@ const Login = () => {
         <p>Login to your account</p>
       </div>
 
-      <form onSubmit={(e)=>{
-        submitHandler(e)
-      }} className="login-form">
+      <form onSubmit={submitHandler} className="login-form">
 
         <div className="form-group">
           <label htmlFor="username">Username</label>
-          <input
+          <input value={username} onChange={(e)=>setusername(e.target.value)}
             type="text"
             id="username"
             name="username"
             placeholder="Enter your username"
-            autocomplete="username"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">email</label>
+          <input value={email} onChange={(e)=>setemail(e.target.value)}
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
             required
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input
+          <input value={password} onChange={(e)=>setpassword(e.target.value)}
             type="password"
             id="password"
             name="password"
             placeholder="Enter your password"
-            autocomplete="current-password"
             required
           />
         </div>

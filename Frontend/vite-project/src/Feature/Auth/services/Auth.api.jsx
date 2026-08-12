@@ -1,18 +1,18 @@
 import axios from "axios";
 const api = axios.create({
-    baseURL: "https://bug-free-space-spork-pj946vjpvgvp36qqg-3000.app.github.dev/api/auth",
+    baseURL: "http://localhost:3000/api/auth",
     withCredentials: true,
 })
 
-export async function registerUser(email,username,password){
+export async function registerUser({username,email,password}){
     const response = await api.post("/register", { email, username, password })
     return response.data
 
 }
 
 
-export async function loginUser(email,username,password){
-    const response = await api.post("/login", { email,username, password })
+export async function loginUser({username,email,password}){
+    const response = await api.post("/login", { username,email, password })
 
     return response.data
 

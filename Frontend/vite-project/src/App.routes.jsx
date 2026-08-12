@@ -6,10 +6,10 @@ import Register from "./Feature/Auth/pages/Register";
 
 export const router = createBrowserRouter([
     
-    // {
-    //     path:"/",
-    //     element:<Home/>
-    // },
+    {
+        path:"/",
+        element:<FaceExpressionDetector/>
+    },
     {
         path:"/Login",
         element:<Login/>
