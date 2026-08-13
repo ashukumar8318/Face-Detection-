@@ -5,7 +5,7 @@ const authRoutes = require("../src/Routes/auth.routes")
 const cors = require("cors")
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://bug-free-space-spork-pj946vjpvgvp36qqg-5173.app.github.dev",
     credentials: true
 }))
 app.use(cookieParser())

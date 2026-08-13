@@ -2,13 +2,16 @@ import {createBrowserRouter} from "react-router-dom";
 import FaceExpressionDetector from "./Feature/Face_Expression/Pages/FaceExpression_Detector";
 import Login from "./Feature/Auth/pages/Login";
 import Register from "./Feature/Auth/pages/Register";
+import Protected from "./Feature/Auth/components/Protected";
 
 
 export const router = createBrowserRouter([
     
     {
         path:"/",
-        element:<FaceExpressionDetector/>
+        element: <Protected>
+            <FaceExpressionDetector/>
+        </Protected>
     },
     {
         path:"/Login",
