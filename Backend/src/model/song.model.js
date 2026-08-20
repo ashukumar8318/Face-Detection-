@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const songSchema = new mongoose.Schema({
-    url:{
+    songUrl:{
         type:String,
         required:true
     },
@@ -16,9 +16,12 @@ const songSchema = new mongoose.Schema({
     },
     mood:{
         type:String,
-        enum:
-            ["happy","sad","surprised"]
+        enum:{
+            values: ["happy","sad","surprised"]
         
+
+        }
+           
     }
 })
 
