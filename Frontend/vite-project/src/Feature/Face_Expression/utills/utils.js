@@ -100,7 +100,7 @@ export const detectFace = ({ landmarker, webcamRef, setExpression }) => {
       setExpression("😴 Eyes Closed");
     } else if (jawOpen > 0.7 && browUp > 0.5) {
       setExpression("😲 Surprise");
-    } else if (jawOpen > 0.7) {
+    } else if (jawOpen > 0.1) {
       setExpression("😮 Mouth Open");
     } else {
       setExpression("😐 Neutral");
